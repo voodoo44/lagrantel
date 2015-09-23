@@ -7,14 +7,8 @@ VAGRANTFILE_API_VERSION = '2'
 
     echo 'zend_extension=xdebug.so' >> /etc/php5/cli/php.ini
     echo 'zend_extension=xdebug.so' >> /etc/php5/apache2/php.ini
-
-    echo 'xdebug.remote_enable = on' >> /etc/php5/apache2/php.ini
-    echo 'xdebug.remote_connect_back = on' >> /etc/php5/apache2/php.ini
-    echo 'xdebug.idekey = "vagrant"' >> /etc/php5/apache2/php.ini
-
-    echo 'xdebug.remote_enable = on' >> /etc/php5/cli/php.ini
-    echo 'xdebug.remote_connect_back = on' >> /etc/php5/cli/php.ini
-    echo 'xdebug.idekey = "vagrant"' >> /etc/php5/cli/php.ini
+    echo -e 'xdebug.remote_enable = on\nxdebug.remote_connect_back = on\nxdebug.idekey = "vagrant"' >> /etc/php5/apache2/php.ini
+    echo -e 'xdebug.remote_enable = on\nxdebug.remote_connect_back = on\nxdebug.idekey = "vagrant"' >> /etc/php5/cli/php.ini
 
     a2enmod rewrite
     service apache2 restart
