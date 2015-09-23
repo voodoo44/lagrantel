@@ -2,7 +2,20 @@ VAGRANTFILE_API_VERSION = '2'
 
 @script = <<SCRIPT
     apt-get update
-    apt-get install -y apache2 git curl php5-cli php5 php5-intl libapache2-mod-php5
+    apt-get install -y apache2 git curl php5-cli php5 php5-intl libapache2-mod-php5 php5-dev php-pear
+    pecl install xdebug
+
+    echo 'zend_extension=xdebug.so' >> /etc/php5/cli/php.ini
+    echo 'zend_extension=xdebug.so' >> /etc/php5/apache2/php.ini
+
+    echo 'xdebug.remote_enable = on' >> /etc/php5/apache2/php.ini
+    echo 'xdebug.remote_connect_back = on' >> /etc/php5/apache2/php.ini
+    echo 'xdebug.idekey = "vagrant"' >> /etc/php5/apache2/php.ini
+
+    echo 'xdebug.remote_enable = on' >> /etc/php5/cli/php.ini
+    echo 'xdebug.remote_connect_back = on' >> /etc/php5/cli/php.ini
+    echo 'xdebug.idekey = "vagrant"' >> /etc/php5/cli/php.ini
+
     a2enmod rewrite
     service apache2 restart
     cd /var/www/laravel
