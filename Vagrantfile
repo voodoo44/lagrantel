@@ -24,7 +24,7 @@ VAGRANTFILE_API_VERSION = '2'
 SCRIPT
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  config.vm.box = 'chef/ubuntu-14.04'
+  config.vm.box = 'ubuntu/vivid64'
   config.vm.network "forwarded_port", guest: 80, host: 8085
   config.vm.synced_folder './laravel', '/var/www/laravel', owner: 'www-data', group: 'www-data'
   config.vm.provision 'shell', inline: @script
